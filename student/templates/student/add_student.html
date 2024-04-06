@@ -1,0 +1,25 @@
+<!-- add_student.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Student</title>
+</head>
+<body>
+    <h2>Add Student</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="branch">Branch:</label><br>
+        <input type="text" id="branch" name="branch"><br>
+        <label for="cgpa">CGPA:</label><br>
+        <input type="text" id="cgpa" name="cgpa"><br>
+        <label for="document">Resume:</label><br>
+        <input type="file" id="document" name="document"><br>
+        <label for="text_field">Area of interests:</label><br>
+        <input type="text" id="text_field" name="text_field"><br> <!-- New input for text field -->
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

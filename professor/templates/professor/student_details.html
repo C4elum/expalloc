@@ -1,0 +1,67 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>Students Selected by {{ professor.name }}</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>CGPA</th>
+            <th>Resume</th>
+            <th>Action</th>
+        </tr>
+        {% for student_data in students_data %}
+        <tr>
+            <td>{{ student_data.name }}</td>
+            <td>{{ student_data.branch }}</td>
+            <td>{{ student_data.cgpa }}</td>
+            <td><a href="{{ student_data.document_url }}">View Resume</a></td>
+            <td>
+                <a href="{{ student_data.accept_url }}">Accept</a> /
+                <a href="{{ student_data.decline_url }}">Decline</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html> -->
+
+<!-- student_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>{{ professor.name }} - Student Details</h1>
+    <ul>
+        {% if no_allocations %}
+    <p>No allocations to display.</p>
+{% else %}
+        <a href="?sort_by=cgpa">Sort by CGPA</a>
+        <a href="?sort_by=fcfs">Sort by FCFS</a>
+        {% for allocation in allocations %}
+            <li>
+                <p>Name: {{ allocation.student.name }}</p>
+                <p>Branch: {{ allocation.student.branch }}</p>
+                <p>CGPA: {{ allocation.student.cgpa }}</p>
+                
+                <a href="{% url 'professor:display_pdf_viewer' student_id=allocation.student.id %}" target="_blank">View Resume</a>
+
+                <a href="{% url 'professor:accept_request' allocation.id %}">Accept</a>
+                <a href="{% url 'professor:decline_request' allocation.id %}">Decline</a>
+            </li>
+        {% endfor %}
+    
+        {%endif%}
+        <a href="{% url 'professor:selected_students' professor_id=professor.id  %}"><button>Selected Students</button></a>
+        </ul>
+</body>
+</html>
+

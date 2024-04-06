@@ -1,0 +1,37 @@
+<!-- professor_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor Detail</title>
+</head>
+<body>
+    <h1>{{ professor.name }}</h1>
+    <p>Department: {{ professor.department }}</p>
+    <p>Expertise: {{ professor.expertise }}</p>
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+            <li><a href="{% url 'student:project_detail' project.id %}">{{ project.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% if success_message %}
+    <p>{{ success_message }}</p>
+    {% endif %}
+    {% if allocation %}
+    <p>Your request has already been sent.</p>
+    <!-- You can display additional information about the request if needed -->
+{% else %}
+    <!-- Display the send request form -->
+     <form method="post" action="{% url 'student:send_request' professor.id %}"> 
+        {% csrf_token %}
+        {{ send_request_form.as_p }}  
+        <button type="submit">Send Request to Work Under {{ professor.name }}</button>
+    </form> 
+
+{% endif %}
+</body>
+</html>

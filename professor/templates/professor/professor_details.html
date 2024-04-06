@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professor Details</title>
+</head>
+<body>
+    <h2>Professor Details</h2>
+    <form method="post" action="{% url 'professor:professor_details' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="{% url 'professor:add_project' %}"><button>Add Project</button></a>
+</body>
+</html>
+

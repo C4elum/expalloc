@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selected Students for {{ professor.name }}</title>
+</head>
+<body>
+    <h1>Selected Students for {{ professor.name }}</h1>
+    <ul>
+        {% for selected_student in selected_students %}
+            <li>{{ selected_student.student.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
